@@ -30,12 +30,29 @@ jobs:
           lfs: true
 
       - name: Download LFS files
-        run: git lfs pull
+        run: |
+          git lfs install
+          git lfs pull
+          git lfs checkout
 
       - name: Verify screensaver video
         run: |
-          ls -lh assets/videos/screensaver.mp4
-          test "$(stat -c%s assets/videos/screensaver.mp4)" -gt 1024
+          VIDEO="assets/videos/screensaver.mp4"
+
+          echo "Checking screensaver video..."
+          ls -lh "$VIDEO"
+          file "$VIDEO"
+
+          if grep -aq "^version https://git-lfs.github.com/spec/v1" "$VIDEO"; then
+            echo "ERROR: Video is still an LFS pointer."
+            exit 1
+          fi
+
+          test "$(stat -c%s "$VIDEO")" -gt 1024
+
+          echo "Actual video file verified successfully."
+          echo "Video size in bytes:"
+          stat -c%s "$VIDEO"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
