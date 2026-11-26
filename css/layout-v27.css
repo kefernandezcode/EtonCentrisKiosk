@@ -1,0 +1,18 @@
+/* v27 retained map cues; typography reverted in v28. */
+/* Map instruction sits on the empty grounds; it does not change map dimensions. */
+.map-touch-hint { position:absolute; left:7.15%; top:25.7%; width:43.2%; margin:0; text-align:center; transform:translateY(-50%); font-size:.72em; line-height:1.2; font-weight:600; letter-spacing:.12em; color:#754B36; pointer-events:none; }
+.location-map-stage.has-selection .map-touch-hint { visibility:hidden; }
+/* Soft Pulse & Ripple. Pseudo-elements share the actual pin center; the raster pin is never scaled. */
+.map-pin-highlight::before, .map-pin-highlight::after { content:""; position:absolute; inset:-.22em; border: max(1px,.065em) solid #C65A25; border-radius:50%; pointer-events:none; transform-origin:center; }
+.map-pin-highlight::before { animation: map-soft-pulse 3.6s ease-in-out infinite; opacity:.24; }
+.map-pin-highlight::after { animation: map-touch-ripple 3.6s ease-out infinite; opacity:0; }
+.map-hotspot[data-connection="open-spaces"] .map-pin-highlight::before, .map-hotspot[data-connection="open-spaces"] .map-pin-highlight::after { animation-delay:1.2s; }
+.map-hotspot[data-connection="event-areas"] .map-pin-highlight::before, .map-hotspot[data-connection="event-areas"] .map-pin-highlight::after { animation-delay:2.4s; }
+@keyframes map-soft-pulse { 0%,100% {transform:scale(1);opacity:.24} 35% {transform:scale(1.12);opacity:.9} 65% {transform:scale(1);opacity:.35} }
+@keyframes map-touch-ripple { 0%,25% {transform:scale(1);opacity:0} 36% {transform:scale(1.12);opacity:.8} 80%,100% {transform:scale(1.65);opacity:0} }
+.location-map-stage.has-selection .map-pin-highlight::before, .location-map-stage.has-selection .map-pin-highlight::after { animation:none; opacity:0; }
+@media (prefers-reduced-motion:reduce) {
+ .map-pin-highlight::before { animation:none; opacity:.6; }
+ .map-pin-highlight::after { animation:none; opacity:0; }
+ .map-hotspot:active .map-pin-highlight { transform:translate(-50%,-50%); }
+}

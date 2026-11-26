@@ -1,0 +1,45 @@
+/* Original supplied PNG branding. Preserve the alpha channel and aspect ratio. */
+.brand-logo {
+  display: block;
+  width: auto;
+  height: clamp(30px, 6vh, 128px);
+  max-width: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+}
+.home-page .brand-logo { height: clamp(38px, 8.5vh, 172px); }
+.welcome-page .brand-logo { height: clamp(44px, 10.5vh, 210px); }
+.welcome-brand { width: 90%; flex: 0 0 auto; }
+body .artwork-title { width: 100%; margin: 0; line-height: 0; flex: 0 0 auto; }
+.artwork-title img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(100%, 62vh, 820px);
+  max-height: 8vh;
+  object-fit: contain;
+  margin: 0 auto;
+}
+.home-page .artwork-title img { max-height: 9vh; }
+.welcome-page .artwork-title { width: 90%; }
+.welcome-page .artwork-title img { max-height: 10vh; }
+.spaces-heading { width: 100%; }
+@media (orientation: landscape) {
+  .home-page .brand-logo { height: 7vh; }
+  .home-page .artwork-title img { max-height: 7vh; }
+  .artwork-title img { max-height: 7vh; }
+}
+
+/* Use the exact welcome title artwork as the prominent headline. */
+.welcome-page .welcome-brand .brand-logo { height: clamp(42px, 9vh, 174px); }
+.welcome-page .artwork-title { width: 94%; }
+.welcome-page .artwork-title img {
+  width: min(100%, 40vh, 749px);
+  height: auto;
+  max-width: 100%;
+  max-height: none;
+}
+@media (orientation: landscape) {
+  .welcome-page .welcome-brand .brand-logo { height: 8vh; }
+  .welcome-page .artwork-title img { width: min(100%, 32vh, 749px); }
+}

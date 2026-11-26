@@ -1,0 +1,166 @@
+/* Artwork iteration: user-provided PNGs; original theme stays editable. */
+:root {
+  --button-gradient: linear-gradient(105deg, #ff963d 0%, #ffd6bf 50%, #ff963d 100%);
+  --button-radius: clamp(10px, 2vw, 24px);
+  --button-shadow: 0 5px 8px rgba(43, 28, 19, .19), 0 2px 3px rgba(43, 28, 19, .14);
+  --button-text-shadow: 0 1px 2px rgba(0,0,0,.20);
+  --art-height: min(100vh, 177.7778vw);
+  --footer-safe: min(11.09375vh, 19.7222222222vw);
+}
+body.home-page, body.new-station-page, body.spaces-page, body.connections-page {
+  background-color: #fef8f3;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+}
+body.home-page { background-image: url('../assets/background-home.png'); }
+/* Independent bottom artwork: scale both axes proportionally, never tile or stretch. */
+body.new-station-page, body.spaces-page, body.connections-page {
+  background-image: url('../assets/border-bottom.png'), url('../assets/background-inner-upper.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: center bottom, center bottom var(--footer-safe);
+  background-size: auto var(--footer-safe), auto calc(var(--art-height) - var(--footer-safe));
+}
+body.home-page .kiosk-shell, body.home-page .main-content,
+body .new-station-screen, body .spaces-screen, body .connections-screen { background: transparent; }
+/* Original cropped borders are temporary: replace with the new PNGs, same filenames. */
+body.home-page .main-content { padding-top: 3vh; padding-bottom: calc(var(--art-height) * .17); gap: 0; justify-content: flex-start; }
+.home-page .brand-header { margin-bottom: clamp(10px,2vh,32px); }
+.home-page .intro { margin-bottom: clamp(10px,2vh,30px); }
+.home-page .intro h1 { font-size: clamp(28px,5.8vw,76px); line-height: .95; }
+.home-page .feature-grid {
+  width: min(100%, 44vh, 780px); flex: 0 1 auto; min-height: 0;
+  grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: auto auto;
+  gap: clamp(8px,1.5vh,20px); align-content: start;
+}
+.home-page .feature-card, .home-page .feature-card:hover, .home-page .feature-card:active {
+  background: transparent; box-shadow: none; border: 0; border-radius: 0; padding: 0; margin: 0;
+  display: block; width: 100%; overflow: visible;
+}
+.home-page .feature-card--primary { grid-column: 1/-1; }
+.home-page .feature-card img { display: block; width: 100%; height: auto; object-fit: contain; pointer-events: none; }
+.home-page .feature-card:hover { filter: brightness(1.035); }
+.home-page .feature-card:active { transform: scale(.98); filter: brightness(.96); }
+.home-page .feature-card:focus-visible { outline: 3px solid #754B36; outline-offset: 4px; }
+/* Keep all inner controls above the independent bottom border. */
+body .new-station-screen, body .spaces-screen, body .connections-screen {
+  min-height: 0; padding-bottom: calc(var(--footer-safe) + 1.4vh);
+}
+.new-station-screen .brand-header { margin-bottom: clamp(12px,2vh,34px); }
+.new-station-heading { margin-bottom: clamp(12px,2vh,32px); }
+.station-feature { flex: 1 1 auto; min-height: 100px; }
+.station-gallery { margin-top: clamp(10px,2vh,28px); flex-basis: clamp(52px,8vh,116px); }
+.back-home { margin: clamp(12px,2vh,28px) 0 0; }
+.spaces-heading, .connections-heading { margin: clamp(10px,2vh,28px) 0; }
+.floorplan-panel, .connection-map { flex: 1 1 auto; max-height: none; min-height: 0; }
+.spaces-navigation, .connections-navigation { margin-bottom: 0; }
+.floorplan-panel { background: rgba(255,248,243,.75); }
+/* General buttons: responsive CSS approximation of the supplied reference. */
+body .outline-button, body .back-home, body .welcome-button, body .connection-card, body .dialog-close, body .gallery-tile {
+  background: var(--button-gradient); color: #171310; border-radius: var(--button-radius);
+  box-shadow: var(--button-shadow); text-shadow: var(--button-text-shadow); font-weight: 600;
+  transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+}
+body .outline-button:hover, body .back-home:hover, body .welcome-button:hover, body .connection-card:hover, body .dialog-close:hover, body .gallery-tile:hover { background: var(--button-gradient); filter: brightness(1.035); }
+body .outline-button:active, body .back-home:active, body .welcome-button:active, body .connection-card:active, body .gallery-tile:active { background: var(--button-gradient); transform: translateY(2px) scale(.99); box-shadow: 0 2px 3px rgba(43,28,19,.18); filter: brightness(.96); }
+body .connection-card.is-active, body .gallery-tile.is-active { outline: 3px solid var(--heading); outline-offset: 2px; }
+.connection-name { color: inherit; text-shadow: inherit; }
+@media (orientation: landscape) {
+  .home-page .main-content { padding-top: 1vh; padding-bottom: 0; }
+  .home-page .brand-header { margin-bottom: 1vh; }
+  .home-page .intro { margin-bottom: 1vh; }
+  .home-page .intro h1 { font-size: clamp(22px,5vh,48px); }
+  .home-page .feature-grid { width: min(100%, 86vh); grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto; align-items: center; }
+  .home-page .feature-card--primary { grid-column: auto; }
+  .new-station-heading h1 { font-size: clamp(26px,7vh,68px); }
+  .new-station-heading h2 { font-size: clamp(18px,4vh,38px); }
+  .spaces-heading h1, .connections-heading h1 { font-size: clamp(22px,5vh,45px); }
+}
+@media (prefers-reduced-motion: reduce) { .feature-card, .outline-button, .back-home, .connection-card, .gallery-tile { transition: none; } }
+
+/* Screensaver and home share the original BG 1, without distortion. */
+body.welcome-page {
+  background: #fef8f3 url('../assets/background-home.png') center bottom / contain no-repeat;
+}
+body.welcome-page .welcome {
+  background: transparent;
+  justify-content: flex-start;
+  gap: clamp(8px, 2vh, 32px);
+  padding: 3vh 0 calc(var(--art-height) * .17);
+  max-width: min(100vw, 75vh);
+}
+.welcome-page .welcome-visual {
+  flex: 1 1 auto;
+  width: 94%;
+  min-height: 0;
+  background: transparent;
+  border-radius: 14px;
+}
+.welcome-page .visual-placeholder {
+  border: 1px dashed rgba(117,75,54,.25);
+  background: rgba(255,248,243,.25);
+}
+.welcome-page .welcome-tagline {
+  flex: 0 0 auto;
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(12px, 2vh, 32px);
+  line-height: 1.2;
+  color: #532B34;
+}
+.welcome-page .welcome-button { flex: 0 0 auto; }
+.welcome-page .welcome-footer { display: none; }
+@media (orientation: landscape) {
+  body.welcome-page .welcome { padding: 2vh 0 3vh; gap: 1.3vh; }
+}
+
+/* The information is embedded in the unused lower-left map area, not a separate card. */
+.floorplan-stage { position: relative; flex: 1 1 auto; min-height: 0; width: 100%; }
+.floorplan-stage .floorplan-svg { display: block; width: 100%; height: 100%; }
+body.spaces-page .floorplan-stage .selected-space {
+  position: absolute;
+  left: 3%; top: 70%; width: 40%;
+  margin: 0; padding: 0; border: 0; border-radius: 0;
+  background: transparent; box-shadow: none;
+  color: #593C2B; pointer-events: none;
+  --plan-scale: .7;
+}
+.floorplan-stage .selected-space h2 {
+  font-family: var(--font-body); font-weight: 700;
+  font-size: clamp(10px, calc(27px * var(--plan-scale)), 27px);
+  margin: 0 0 .35em; line-height: 1.15;
+}
+.floorplan-stage .selected-space dl {
+  font-size: clamp(9px, calc(23px * var(--plan-scale)), 23px);
+  line-height: 1.38;
+}
+.floorplan-stage .selected-space dl div { gap: .3em; }
+.floorplan-stage .selected-space dl div[hidden] { display: none; }
+
+/* Borderless Modern Editorial detail treatment, aligned to the SVG empty area. */
+body.spaces-page .floorplan-stage .editorial { height: auto; font-family: var(--font-body); font-size: 14px; line-height: 1.2; color: #382423; }
+.editorial [hidden] { display: none !important; }
+.editorial-watermark { position: absolute; top: -.02em; left: -.02em; font-size: 11.5em; line-height: .94; font-weight: 800; color: #EAC39C; opacity: .28; transform-origin: left center; pointer-events: none; }
+.editorial-content { position: relative; }
+.editorial-eyebrow { font-size: .62em; letter-spacing: .22em; color: #754B36; margin-bottom: .66em; }
+.editorial-unit { font-size: 1.12em; font-weight: 700; letter-spacing: .14em; }
+.editorial-area { display: flex; gap: .35em; align-items: baseline; white-space: nowrap; margin-top: .28em; }
+.editorial-area #unit-area { font-size: 3.1em; font-weight: 800; line-height: 1.06; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.editorial-sqm { font-size: .96em; color: #754B36; }
+.editorial-divider { height: 1px; background: #C65A25; margin: .58em 0; transform-origin: left center; }
+.editorial-use { font-size: .93em; font-weight: 700; letter-spacing: .065em; }
+.editorial-kitchen { margin-top: .6em; font-size: .83em; color: #754B36; }
+.editorial-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.editorial.is-revealing .editorial-watermark { animation: editorial-watermark calc(var(--reveal-duration) * .60) cubic-bezier(.22,1,.36,1) both; }
+.editorial.is-revealing .editorial-eyebrow, .editorial.is-revealing .editorial-unit, .editorial.is-revealing .editorial-area, .editorial.is-revealing .editorial-use, .editorial.is-revealing .editorial-kitchen { animation: editorial-rise calc(var(--reveal-duration) * .35) cubic-bezier(.22,1,.36,1) both; }
+.editorial.is-revealing .editorial-unit { animation-delay: calc(var(--reveal-duration) * .10); }
+.editorial.is-revealing .editorial-area { animation-delay: calc(var(--reveal-duration) * .20); }
+.editorial.is-revealing .editorial-divider { animation: editorial-line calc(var(--reveal-duration) * .35) cubic-bezier(.22,1,.36,1) calc(var(--reveal-duration) * .40) both; }
+.editorial.is-revealing .editorial-use { animation-delay: calc(var(--reveal-duration) * .50); }
+.editorial.is-revealing .editorial-kitchen { animation-delay: calc(var(--reveal-duration) * .65); }
+@keyframes editorial-watermark { from { opacity: 0; transform: scale(.96); } to { opacity: .28; transform: scale(1); } }
+@keyframes editorial-rise { from { opacity: 0; transform: translateY(.6em); clip-path: inset(0 0 100% 0); } to { opacity: 1; transform: translateY(0); clip-path: inset(0); } }
+@keyframes editorial-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .editorial.is-revealing * { animation: none !important; } }

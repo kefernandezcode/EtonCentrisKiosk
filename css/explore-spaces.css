@@ -1,0 +1,133 @@
+.spaces-page {
+  height: 100%;
+  overflow: hidden;
+  background: #fff8f2;
+  color: #21100d;
+}
+.spaces-screen {
+  height: 100dvh;
+  min-height: 560px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(12px, 2.5vh, 26px) clamp(20px, 4.5vw, 48px) 0;
+  background: radial-gradient(ellipse at 50% 35%, rgba(255,225,200,.3), transparent 55%), #fff8f2;
+}
+.spaces-brand { flex: 0 0 auto; text-align: center; line-height: 1; }
+.spaces-brand .logo-placeholder {
+  width: clamp(38px, 6vw, 54px);
+  height: clamp(38px, 6vw, 54px);
+  margin-bottom: 6px;
+}
+.spaces-brand .brand-name { font-size: clamp(10px, 1.6vw, 15px); }
+.spaces-brand .brand-subtitle { font-size: clamp(8px, 1.2vw, 11px); }
+.spaces-heading { flex: 0 0 auto; text-align: center; margin: clamp(18px, 3.5vh, 34px) 0 clamp(14px, 2.5vh, 24px); }
+.spaces-heading h1 {
+  margin: 0;
+  color: #40232a;
+  font-size: clamp(30px, 5.3vw, 54px);
+  line-height: 1.02;
+  font-weight: 900;
+  letter-spacing: -.04em;
+}
+.floorplan-panel {
+  width: 100%;
+  max-width: 720px;
+  flex: 1 1 40%;
+  min-height: 130px;
+  max-height: 42%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px 6px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.5);
+}
+.floorplan-hint {
+  flex: 0 0 auto;
+  text-align: center;
+  color: #9a6951;
+  font-size: 9px;
+  letter-spacing: .16em;
+  padding: 0 0 4px;
+}
+.floorplan-svg { display: block; width: 100%; height: 100%; min-height: 0; }
+.plan-outline { fill: #f8f5ef; stroke: #776f67; stroke-width: 4; }
+.plan-walkway { fill: #fffaf4; stroke: #b9ada1; stroke-width: 2; }
+.unit {
+  fill: #f5b66f;
+  stroke: #8b654a;
+  stroke-width: 3;
+  cursor: pointer;
+  transition: fill .15s ease, stroke-width .15s ease;
+}
+.unit:hover { fill: #ffc98f; }
+.unit.is-selected { fill: #f47f25; stroke: #713d27; stroke-width: 6; }
+.plan-core { fill: #e6ddd2; stroke: #998b7e; stroke-width: 2; }
+.unit-label { fill: #573e30; font: 700 13px Arial, sans-serif; pointer-events: none; }
+.plan-label { fill: #75675d; font: 700 10px Arial, sans-serif; pointer-events: none; }
+.selected-space {
+  width: 100%;
+  max-width: 720px;
+  flex: 0 0 auto;
+  margin-top: clamp(10px, 1.8vh, 18px);
+  padding: clamp(12px, 2vh, 18px) clamp(16px, 3vw, 26px);
+  border-radius: 18px;
+  background: #ffe3ca;
+}
+.selected-space h2 { margin: 0 0 5px; font-size: clamp(15px, 2.4vw, 21px); }
+.selected-space dl { margin: 0; font-size: clamp(12px, 1.9vw, 17px); line-height: 1.42; }
+.selected-space dl div { display: flex; gap: 5px; }
+.selected-space dt { font-weight: 700; }
+.selected-space dd { margin: 0; }
+.plan-disclaimer {
+  flex: 0 0 auto;
+  margin: 7px 0 0;
+  color: #80766e;
+  font-size: clamp(9px, 1.2vw, 11px);
+  font-style: italic;
+}
+.spaces-navigation {
+  width: 100%;
+  max-width: 720px;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin: clamp(12px, 2.2vh, 22px) 0 clamp(10px, 2vh, 18px);
+}
+.outline-button {
+  min-width: 112px;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 2px solid #b9856b;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #3c211b;
+  background: rgba(255,255,255,.55);
+  text-decoration: none;
+  font-size: clamp(13px, 1.8vw, 17px);
+  font-weight: 600;
+}
+.spaces-footer {
+  width: calc(100% + 2 * clamp(20px, 4.5vw, 48px));
+  flex: 0 0 clamp(22px, 4.5vh, 42px);
+  background: #f78b2f;
+}
+@media (orientation: landscape) {
+  .spaces-screen { padding-top: 8px; }
+  .spaces-heading { margin: 8px 0; }
+  .floorplan-panel { max-height: 46%; }
+  .selected-space { padding: 8px 16px; margin-top: 6px; }
+  .spaces-navigation { margin: 8px 0; }
+  .spaces-footer { flex-basis: 18px; }
+}
+
+.floorplan-svg .unit { fill: var(--unit-fill); stroke-width: 1.8; }
+.floorplan-svg .unit:hover, .floorplan-svg .unit:focus { fill: #ffd49a; }
+.floorplan-svg .unit.is-selected { fill: #f78b2f; stroke-width: 3; }
+.floorplan-svg .unit-label { font: bold 18px Arial,sans-serif; fill: #171411; }

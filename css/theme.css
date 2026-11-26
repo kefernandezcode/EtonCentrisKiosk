@@ -1,0 +1,40 @@
+/* Experimental theme: edit these tokens to try another direction. */
+@font-face { font-family: 'Cormorant Garamond'; src: local('Cormorant Garamond SemiBold'), url('../assets/fonts/CormorantGaramond-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: local('Manrope Regular'), url('../assets/fonts/Manrope-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: local('Manrope SemiBold'), url('../assets/fonts/Manrope-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+:root {
+ --font-heading: 'Cormorant Garamond', Georgia, serif;
+ --font-body: 'Manrope', Arial, sans-serif;
+ --cream: #F4E9DB; --heading: #754B36; --ink: #593C2B;
+ --orange: #C65A25; --orange-light: #EAC39C; --peach: #EAC39C;
+ --button-hover: #B65020; --button-pressed: #A3471D; --button-radius: 6px;
+ --unit-default: #EAC39C; --unit-hover: #DDA477; --unit-selected: #C65A25; --unit-outline: #754B36;
+ --station-orange: var(--orange); --station-cream: var(--cream); --station-heading: var(--heading); --station-ink: var(--ink); --station-peach: var(--peach);
+}
+body, button, a { font-family: var(--font-body); }
+body, .main-content, .new-station-screen, .spaces-screen, .connections-screen, .welcome { background: var(--cream); color: var(--ink); }
+body h1, body h2 { font-family: var(--font-heading); font-weight: 600; color: var(--heading); letter-spacing: -.015em; -webkit-text-stroke: 0; }
+.welcome h1 span { color: var(--heading); }
+.welcome-tagline { font-family: var(--font-heading); font-style: italic; }
+.brand-name, .brand-subtitle, .logo-placeholder { color: var(--heading); border-color: var(--heading); }
+.feature-grid { gap: 6px; }
+.feature-card, .feature-card--primary, .feature-card--spaces, .feature-card--location, .outline-button, .back-home, .welcome-button, .connection-card, .dialog-close { background: var(--orange); color: white; border: 0; border-radius: var(--button-radius); box-shadow: none; font-weight: 600; }
+.feature-card--location { margin-left: 0; }
+.feature-card--primary::after { display: none; }
+.card-title, .connection-name { font-family: var(--font-body); font-weight: 600; color: inherit; }
+.card-arrow { border-radius: var(--button-radius); color: var(--heading); }
+.outline-button, .back-home { min-height: 56px; }
+.feature-card:hover, .outline-button:hover, .back-home:hover, .welcome-button:hover, .connection-card:hover, .dialog-close:hover { background: var(--button-hover); filter: none; }
+.feature-card:active, .outline-button:active, .back-home:active, .welcome-button:active, .connection-card:active { background: var(--button-pressed); transform: scale(.99); }
+.connection-card.is-active { background: var(--button-pressed); outline: 3px solid var(--heading); }
+.gallery-tile { border-radius: var(--button-radius); background: var(--peach); color: var(--heading); }
+.gallery-tile.is-active { border-color: var(--orange); box-shadow: none; }
+.station-node { background: var(--heading); border-radius: var(--button-radius); box-shadow: none; }
+.selected-space, .connection-detail { background: var(--peach); color: var(--ink); }
+.spaces-footer, .connections-footer, .decorative-footer, .welcome-footer { background: var(--orange); }
+.floorplan-panel { background: var(--cream); }
+.floorplan-svg .unit { fill: var(--unit-default); stroke: var(--unit-outline); }
+.floorplan-svg .unit:hover, .floorplan-svg .unit:focus { fill: var(--unit-hover); stroke: var(--unit-outline); }
+.floorplan-svg .unit.is-selected { fill: var(--unit-selected); stroke: var(--unit-outline); }
+.floorplan-svg .unit-label, .floorplan-svg .common-label { font-family: var(--font-body); fill: var(--unit-outline); }
+.floorplan-svg .unit.is-selected + .unit-label { fill: white; }

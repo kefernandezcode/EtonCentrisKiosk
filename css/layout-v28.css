@@ -1,0 +1,4 @@
+/* v28: keep the original brochure layout and fit all three bold headlines to a common size. */
+.brochure-body { gap: .40em; }
+.brochure-logo { flex-basis: 23%; width: 23%; }
+.brochure-copy h3 { white-space: nowrap; letter-spacing: normal; font-size: var(--brochure-headline-size, .80em); }

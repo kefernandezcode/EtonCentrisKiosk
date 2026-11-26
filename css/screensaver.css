@@ -1,0 +1,3 @@
+/* Welcome screen baseline. Final layout is in video-welcome.css. */
+.welcome { text-align: center; cursor: pointer; }
+.welcome-button { text-decoration: none; }

@@ -1,0 +1,18 @@
+/* v25: cover the entire angled gray plot, not the adjacent roads. */
+.location-brochure { left:7.15%; top:5.8%; width:43.2%; height:39.8%; padding:.53em; gap:.36em; box-shadow:0 .22em .65em rgba(75,48,53,.14); }
+/* Position the ring at the actual circular pin center, independently of label height.
+   The stage font-size is 22px per 1080px width; 3% of its 1015px height = 1.38409em. */
+.map-pin-highlight { width:2.02em; left:50%; top:1.38409em; transform:translate(-50%,-50%); pointer-events:none; }
+.map-hotspot:active .map-pin-highlight { transform:translate(-50%,-50%) scale(.9); }
+.brochure-heading h2 { font-family:var(--font-body); font-size:.79em; font-weight:600; letter-spacing:.065em; line-height:1.12; color:#4b3035; }
+.brochure-heading img { flex:0 0 1.65em; }
+.brochure-photo { flex:0 0 auto; aspect-ratio:1.88; border-radius:.48em; background:#fff; }
+.brochure-photo img { object-fit:contain; }
+.brochure-body { flex:1 1 0; min-height:0; gap:.52em; align-items:center; }
+.brochure-logo { flex:0 0 27%; width:27%; height:auto; max-height:100%; object-fit:contain; }
+.brochure-copy h3 { font-family:var(--font-heading); font-style:italic; font-weight:400; font-size:.94em; line-height:1.08; color:#4b3035; padding-bottom:.24em; border-bottom:1px solid #c65a25; margin:0 0 .28em; }
+.brochure-copy p { font-family:var(--font-body); font-weight:400; font-size:.70em; line-height:1.26; color:#754b36; text-align:left; margin:0; }
+/* Reserve room for the longest official description without changing the shared card size. */
+.brochure-photo { flex:1 1 0; aspect-ratio:auto; min-height:0; }
+.brochure-body { flex:0 0 37%; }
+.brochure-logo { flex-basis:25%; width:25%; }

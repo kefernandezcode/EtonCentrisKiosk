@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#fff8f2" name="theme-color"/>
+<title>Location and Connections | Eton Centris Station</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/location-connections.css" rel="stylesheet"/>
+<link href="css/theme.css" rel="stylesheet"/>
+<link href="css/artwork.css" rel="stylesheet"/><link href="css/branding.css" rel="stylesheet"/><link rel="stylesheet" href="css/premium-finishing.css"/>
+<link rel="stylesheet" href="css/layout-v20.css"/>
+<link rel="stylesheet" href="css/layout-v22.css"/>
+<script src="js/page-transitions.js"></script>
+<link rel="stylesheet" href="css/layout-v24.css"/>
+<link rel="stylesheet" href="css/layout-v25.css"/>
+<link rel="stylesheet" href="css/layout-v26.css"/>
+<link rel="stylesheet" href="css/layout-v27.css"/>
+<link rel="stylesheet" href="css/layout-v28.css"/>
+</head>
+<body class="connections-page">
+<main class="connections-screen">
+<header class="connections-brand"><img class="brand-logo" src="assets/logos/eton-centris-station.png" alt="Eton Centris Station" draggable="false"/></header>
+<section class="connections-heading">
+<h1 class="artwork-title"><img src="assets/titles/title-location-connections-balanced.png" alt="Location &amp; Connections" draggable="false" width="898" height="317"/></h1>
+</section>
+<section class="location-map-area" aria-label="Interactive Eton Centris site map">
+  <div class="location-map-stage" id="location-map-stage">
+    <img class="location-map-art" src="assets/location/location-map.png" alt="Eton Centris Station site map showing Quezon Avenue, EDSA, MRT Line 3, Cyberpod Office Towers, Open Spaces and Event Areas" draggable="false" width="1080" height="1015"/>
+    <p class="map-touch-hint" aria-hidden="true">TAP AN ICON TO EXPLORE</p>
+    <button type="button" class="map-hotspot" data-connection="cyberpod" aria-label="Cyberpod Office Towers" aria-pressed="false" aria-controls="location-brochure" style="--x:73.24%;--y:50.94%;--label-height:9.0%"><span class="map-pin-highlight"></span></button>
+    <button type="button" class="map-hotspot" data-connection="open-spaces" aria-label="Open Spaces" aria-pressed="false" aria-controls="location-brochure" style="--x:84.35%;--y:51.13%;--label-height:7.6%"><span class="map-pin-highlight"></span></button>
+    <button type="button" class="map-hotspot" data-connection="event-areas" aria-label="Event Areas" aria-pressed="false" aria-controls="location-brochure" style="--x:93.24%;--y:47.39%;--label-height:7.6%"><span class="map-pin-highlight"></span></button>
+    <article class="location-brochure" id="location-brochure" aria-live="polite" aria-hidden="true" hidden>
+      <header class="brochure-heading"><img id="brochure-icon" alt=""/><h2 id="brochure-title"></h2></header>
+      <div class="brochure-photo"><img id="brochure-photo" alt="" hidden/><span id="brochure-placeholder">OFFICIAL PHOTO<br/>PLACEHOLDER</span></div>
+      <div class="brochure-body"><img class="brochure-logo" id="brochure-logo" alt=""/><div class="brochure-copy"><h3 id="brochure-headline"></h3><p id="brochure-description"></p></div></div>
+    </article>
+  </div>
+</section>
+<nav aria-label="Page navigation" class="connections-navigation">
+<a class="outline-button location-home" href="home.html"><span aria-hidden="true">⌂</span> <span class="button-label">BACK TO HOME</span></a>
+</nav>
+</main>
+<script src="js/location-connections.js"></script>
+<script src="js/idle-timer.js"></script>
+</body>
+</html>

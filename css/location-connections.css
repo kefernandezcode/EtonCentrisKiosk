@@ -1,0 +1,185 @@
+.connections-page {
+  height: 100%;
+  overflow: hidden;
+  background: #fff8f2;
+  color: #21100d;
+}
+.connections-screen {
+  height: 100dvh;
+  min-height: 560px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(12px, 2.5vh, 26px) clamp(20px, 4.5vw, 48px) 0;
+  background: radial-gradient(ellipse at 50% 35%, rgba(255,225,200,.3), transparent 55%), #fff8f2;
+}
+.connections-brand { flex: 0 0 auto; text-align: center; line-height: 1; }
+.connections-brand .logo-placeholder {
+  width: clamp(38px, 6vw, 54px);
+  height: clamp(38px, 6vw, 54px);
+  margin-bottom: 6px;
+}
+.connections-brand .brand-name { font-size: clamp(10px, 1.6vw, 15px); }
+.connections-brand .brand-subtitle { font-size: clamp(8px, 1.2vw, 11px); }
+.connections-heading {
+  flex: 0 0 auto;
+  text-align: center;
+  margin: clamp(18px, 3.5vh, 34px) 0 clamp(14px, 2.5vh, 24px);
+}
+.connections-heading h1 {
+  margin: 0;
+  color: #40232a;
+  font-size: clamp(29px, 5vw, 52px);
+  line-height: 1.02;
+  font-weight: 900;
+  letter-spacing: -.04em;
+}
+.connection-map {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  flex: 1 1 42%;
+  min-height: 190px;
+  max-height: 43%;
+}
+.connection-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.connection-lines path {
+  fill: none;
+  stroke: #e7b995;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.connection-lines circle { fill: #a96a43; stroke: #fff4e9; stroke-width: 3; }
+.connection-card {
+  position: absolute;
+  z-index: 1;
+  width: 29%;
+  height: 27%;
+  min-height: 66px;
+  border: 0;
+  border-radius: 20px;
+  background: #ffe2c8;
+  color: #321b16;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  font: inherit;
+  box-shadow: 0 2px 0 rgba(180, 117, 76, .06);
+  transition: background .15s ease, transform .15s ease, outline .15s ease;
+}
+.connection-card:active { transform: scale(.97); }
+.connection-card.is-active {
+  background: #ffbd82;
+  outline: 3px solid #d96b24;
+  outline-offset: 2px;
+}
+.mrt-card { left: 0; top: 0; }
+.entrances-card { right: 0; top: 0; }
+.cyberpods-card { left: 0; bottom: 0; }
+.walk-card { right: 0; bottom: 0; }
+.connection-icon {
+  font-size: clamp(23px, 4vw, 38px);
+  line-height: 1;
+  font-weight: 700;
+}
+.connection-name {
+  text-align: center;
+  font-size: clamp(12px, 2.1vw, 19px);
+  line-height: 1.05;
+  font-weight: 750;
+}
+.station-node {
+  position: absolute;
+  z-index: 2;
+  width: 42%;
+  height: 39%;
+  min-height: 92px;
+  left: 29%;
+  top: 30%;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #f47725, #d9500b);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: clamp(17px, 3vw, 27px);
+  line-height: 1.05;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(172, 76, 25, .14);
+}
+.station-icon { font-size: clamp(25px, 4.5vw, 40px); line-height: 1; margin-bottom: 4px; }
+.connection-detail {
+  width: 100%;
+  max-width: 620px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 45px;
+  margin-top: 8px;
+  padding: 8px 14px;
+  border-radius: 13px;
+  background: rgba(255, 226, 200, .72);
+  text-align: center;
+  font-size: clamp(10px, 1.6vw, 14px);
+}
+.connection-detail strong { font-size: 1.05em; }
+.connection-detail span { color: #74594b; }
+.connections-note {
+  flex: 0 0 auto;
+  margin: 7px 0 0;
+  color: #80766e;
+  font-size: clamp(9px, 1.2vw, 11px);
+  font-style: italic;
+}
+.connections-navigation {
+  width: 100%;
+  max-width: 620px;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin: clamp(12px, 2.2vh, 22px) 0 clamp(10px, 2vh, 18px);
+}
+.outline-button {
+  min-width: 112px;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 2px solid #b9856b;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #3c211b;
+  background: rgba(255,255,255,.55);
+  text-decoration: none;
+  font-size: clamp(13px, 1.8vw, 17px);
+  font-weight: 600;
+}
+.connections-footer {
+  width: calc(100% + 2 * clamp(20px, 4.5vw, 48px));
+  flex: 0 0 clamp(22px, 4.5vh, 42px);
+  background: #f78b2f;
+}
+@media (orientation: landscape) {
+  .connections-screen { padding-top: 8px; }
+  .connections-heading { margin: 8px 0; }
+  .connection-map { max-height: 45%; }
+  .connection-detail { min-height: 34px; padding: 5px 12px; }
+  .connections-navigation { margin: 8px 0; }
+  .connections-footer { flex-basis: 18px; }
+}

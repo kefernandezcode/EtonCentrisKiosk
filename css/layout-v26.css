@@ -1,0 +1,24 @@
+/* v26: optically matched original PNG title lettering. */
+@media (orientation: portrait) {
+  body.new-station-page .artwork-title img,
+  body.spaces-page .artwork-title img,
+  body.connections-page .artwork-title img {
+    height: 8vh; width: auto; max-height: none; max-width: 100%; object-fit: contain;
+  }
+  body.spaces-page .floorplan-panel { max-width: 952px; padding-inline: 6px; }
+  body.spaces-page .spaces-navigation { max-width: 892px; }
+}
+@media (orientation: landscape) {
+  body.new-station-page .artwork-title img,
+  body.spaces-page .artwork-title img,
+  body.connections-page .artwork-title img {
+    height: 7vh; width: auto; max-height: none; max-width: 100%; object-fit: contain;
+  }
+}
+/* Upright names, with the previous caption size and animation. */
+.caption-name { font-style: normal; font-family: var(--font-heading); font-weight: 600; }
+/* Corporate brochure reference: geometric sans-serif, bold headings, regular copy. */
+.location-brochure { font-family: Montserrat, var(--font-body); }
+.brochure-heading h2 { font-family: inherit; font-style: normal; font-size: .88em; font-weight: 700; letter-spacing: 0; color: #46251c; }
+.brochure-copy h3 { font-family: inherit; font-style: normal; font-weight: 700; font-size: .80em; line-height: 1.15; color: #151515; border: 0; padding: 0; margin: 0 0 .36em; }
+.brochure-copy p { font-family: inherit; font-weight: 400; font-size: .70em; line-height: 1.28; color: #151515; text-align: left; }

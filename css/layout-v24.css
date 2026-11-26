@@ -1,0 +1,56 @@
+/* v24 — breathing room without pushing main content toward the bottom. */
+@media (orientation: portrait) {
+  :root { --branding-gap: clamp(16px, 5.20833vh, 100px); }
+  body.home-page .brand-header, body.new-station-page .new-station-brand,
+  body.spaces-page .spaces-brand, body.connections-page .connections-brand { margin-bottom: var(--branding-gap); }
+  /* Rebalance the adjacent gap rather than simply adding vertical displacement. */
+  body.home-page .intro { margin-bottom: clamp(18px, 2.5vh, 48px); }
+  body.spaces-page .spaces-heading { margin-bottom: clamp(8px, 1.25vh, 24px); }
+  body.new-station-page .new-station-heading, body.connections-page .connections-heading { margin-bottom: clamp(8px, 1.25vh, 24px); }
+  body.video-welcome-page .welcome-title { top: 16.3%; }
+  body.video-welcome-page .welcome-visual { top: 22%; }
+}
+/* Stable editorial bounds: leave the label permanently in place. */
+body.spaces-page .floorplan-stage .editorial { height: 10em; }
+.editorial-content { height: 100%; display:flex; flex-direction:column; }
+.editorial-eyebrow { flex: 0 0 auto; }
+.editorial-changing { flex: 1 1 auto; display:flex; flex-direction:column; min-height:0; transition: opacity 180ms ease; }
+.editorial.is-dissolving .editorial-changing, .editorial.is-dissolving .editorial-watermark { opacity:0; transition:opacity 180ms ease; }
+.editorial.is-revealing .editorial-eyebrow { animation: none; }
+.editorial.has-selection .editorial-kitchen { margin-top:auto; }
+.editorial.has-selection .editorial-kitchen[hidden] { display:block !important; visibility:hidden; }
+.editorial:not(.has-selection) .editorial-kitchen { display:none; }
+/* Location map artwork: uniform scale, independent of screen aspect ratio. */
+body.connections-page .connections-screen { padding-inline: 0; }
+.location-map-area { flex:1 1 0; width:100%; min-height:0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.location-map-stage { position:relative; flex:0 0 auto; width: min(100%,1080px); aspect-ratio:1080/1015; isolation:isolate; }
+.location-map-art { display:block; width:100%; height:100%; object-fit:contain; pointer-events:none; }
+.map-hotspot { position:absolute; left:var(--x); top:calc(var(--y) - 3%); transform:translateX(-50%); width:10%; height:calc(var(--label-height) + 4%); border:none; background:transparent; padding:0; cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.map-pin-highlight { display:block; position:absolute; width:48%; aspect-ratio:1; left:26%; top:0; border-radius:50%; border:2px solid transparent; transition:box-shadow 150ms ease,transform 150ms ease; }
+.map-hotspot[aria-pressed="true"] .map-pin-highlight { box-shadow:0 0 0 .13em #fff,0 0 0 .23em #c65a25; }
+.map-hotspot:active .map-pin-highlight { transform:scale(.9); }
+.map-hotspot:focus-visible { outline:2px solid #754b36; border-radius:6px; }
+.location-brochure { position:absolute; left:8.7%; top:8.2%; width:40%; height:34.5%; background:#fff; border-radius:.3em; padding:.45em; display:flex; flex-direction:column; gap:.35em; color:#4b3035; box-shadow:0 .25em .8em rgba(75,48,53,.17); opacity:0; transform:translateY(.55em); transition:opacity 300ms ease,transform 300ms ease; font-family:var(--font-body); pointer-events:none; }
+.location-brochure[hidden] { display:none; }
+.location-brochure.is-visible { opacity:1; transform:translateY(0); transition:opacity 800ms ease,transform 800ms cubic-bezier(.22,1,.36,1); }
+.location-brochure.is-visible.is-switching { transition-duration:420ms; }
+.brochure-heading { display:flex; align-items:center; gap:.3em; flex:0 0 auto; }
+.brochure-heading img { width:1.65em; height:1.65em; object-fit:contain; }
+.brochure-heading h2 { margin:0; font-size:.79em; line-height:1.08; font-weight:750; }
+.brochure-photo { flex:1 1 0; min-height:0; width:100%; border-radius:.48em; background:#eee9e3; color:#86766c; display:flex; align-items:center; justify-content:center; text-align:center; overflow:hidden; }
+.brochure-photo img { width:100%; height:100%; object-fit:cover; }
+.brochure-photo span { font-size:.72em; letter-spacing:.08em; line-height:1.4; }
+.brochure-photo [hidden] { display:none; }
+.brochure-body { flex:0 0 26%; display:flex; gap:.5em; align-items:center; }
+.brochure-logo { width:28%; height:100%; object-fit:contain; }
+.brochure-copy { flex:1; min-width:0; }
+.brochure-copy h3 { font-size:.72em; line-height:1.18; margin:0 0 .22em; }
+.brochure-copy p { font-size:.66em; line-height:1.3; margin:0; }
+body.connections-page .connections-navigation { justify-content:center; width:100%; }
+body.connections-page .location-home { min-width:min(330px,90%); min-height:clamp(44px,4.8vh,86px); font-size:clamp(12px,1.6vh,28px); }
+@media (orientation:landscape) { body.connections-page .connections-heading { margin-bottom:1vh; } body.connections-page .location-home { min-height:38px; } }
+@media (prefers-reduced-motion:reduce) { .editorial-changing,.editorial-watermark,.location-brochure,.location-brochure.is-visible,.map-pin-highlight { transition:none !important; } }
+/* Keep the brochure legible at the full portrait size. */
+.brochure-heading h2 { font-size: .92em; }
+.brochure-copy h3 { font-size: .86em; }
+.brochure-copy p { font-size: .76em; }

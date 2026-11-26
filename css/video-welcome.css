@@ -1,0 +1,21 @@
+/* Layout follows the supplied 9:16 video screensaver guide. Scale the stage uniformly. */
+body.video-welcome-page { --welcome-u: min(1vw, .5625vh); background: #fef8f3 url('../assets/background-home.png') center bottom / contain no-repeat; }
+body.video-welcome-page::before, body.video-welcome-page::after { content: none; display: none; }
+body.video-welcome-page .welcome { position: relative; display: block; width: calc(100 * var(--welcome-u)); max-width: none; height: calc(177.7778 * var(--welcome-u)); padding: 0; margin: 0 auto; background: transparent; overflow: hidden; color: var(--burgundy); }
+body.video-welcome-page .welcome-brand { position: absolute; top: 5%; left: 0; width: 100%; height: 8.2%; }
+body.video-welcome-page .welcome-brand .brand-logo { width: auto; max-width: 90%; height: 100%; object-fit: contain; }
+body.video-welcome-page .welcome-title { position: absolute; top: 17.8%; left: 9%; width: 82%; margin: 0; line-height: 0; }
+body.video-welcome-page .welcome-title img { display: block; width: 100%; height: auto; object-fit: contain; }
+body.video-welcome-page .welcome-visual { position: absolute; top: 25.6%; left: 1%; width: 98%; height: calc(55.125 * var(--welcome-u)); overflow: hidden; background: #f1dfd1; border-radius: calc(2.8 * var(--welcome-u)); }
+.welcome-fallback, .welcome-video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.welcome-video { opacity: 0; }
+.welcome-visual.video-playing .welcome-video { opacity: 1; }
+.welcome-visual.video-playing .welcome-fallback { visibility: hidden; }
+body.video-welcome-page .welcome-tagline { position: absolute; top: 62.4%; left: 5%; width: 90%; margin: 0; color: var(--burgundy); font-family: var(--font-body); font-weight: 400; font-style: normal; font-size: calc(4.55 * var(--welcome-u)); line-height: 1.55; }
+body.video-welcome-page .welcome-tagline strong { font-weight: 800; }
+body.video-welcome-page .welcome-button { position: absolute; top: 74%; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; justify-content: center; gap: calc(2.2 * var(--welcome-u)); width: 48%; min-width: 0; max-width: none; height: 7.7%; padding: 0 calc(1.8 * var(--welcome-u)); border-radius: calc(2.6 * var(--welcome-u)); font-size: calc(3.15 * var(--welcome-u)); letter-spacing: .1em; color: var(--burgundy); }
+body.video-welcome-page .welcome-button:active { transform: translateX(-50%) translateY(2px); }
+body.video-welcome-page .touch-icon { display: block; flex: 0 0 auto; width: calc(7 * var(--welcome-u)); height: calc(7 * var(--welcome-u)); object-fit: contain; }
+body.video-welcome-page .button-label { display: block; white-space: nowrap; }
+body.video-welcome-page .welcome-button:focus-visible { outline: 3px solid var(--burgundy); outline-offset: 4px; }
+@media (orientation: landscape) { body.video-welcome-page .welcome { margin: 0 auto; } }

@@ -1,0 +1,95 @@
+/* v20: portrait spacing scale, independent adaptive footer, page transitions. */
+:root {
+  --page-transition-ms: 800ms;
+  --page-half-transition: 400ms;
+  --branding-top: 3.5vh;
+  --branding-logo-height: clamp(30px, 7.6vh, 150px);
+  --branding-gap: clamp(10px, 1.85vh, 40px);
+  --content-gap: clamp(12px, 2.3vh, 50px);
+  --nav-gap: clamp(12px, 2.3vh, 50px);
+  /* Native footer ratio = 1080 / 213. Up to 30% horizontal stretch,
+     with the original proportional height and unchanged bottom anchor. */
+  --footer-width: min(100vw, 73.125vh);
+}
+html { background: #fef8f3; }
+body.new-station-page, body.spaces-page, body.connections-page {
+  background-size: var(--footer-width) var(--footer-safe), max(100vw, calc((100vh - var(--footer-safe)) * .632689)) auto;
+}
+@media (orientation: portrait) {
+  body.home-page .main-content { padding-top: var(--branding-top); }
+  body.home-page .brand-header { margin: 0 0 var(--branding-gap); }
+  /* v21: retain the balanced branding group; lower the menu by 60px at 1080 × 1920. */
+  body.home-page .intro { margin: 0 0 calc(var(--content-gap) + min(3.125vh, 60px)); }
+  body.home-page .brand-logo,
+  body.new-station-page .new-station-brand .brand-logo,
+  body.spaces-page .spaces-brand .brand-logo,
+  body.connections-page .connections-brand .brand-logo { height: var(--branding-logo-height); }
+  body.new-station-page .new-station-screen,
+  body.spaces-page .spaces-screen,
+  body.connections-page .connections-screen {
+    padding-top: var(--branding-top);
+    padding-bottom: calc(var(--footer-safe) + clamp(10px, 1.8vh, 40px));
+  }
+  body.new-station-page .new-station-screen { gap: 0; }
+  body.new-station-page .new-station-brand { margin: 0 0 var(--branding-gap); }
+  body.new-station-page .new-station-heading { margin: 0 0 var(--content-gap); }
+  body.new-station-page .back-home { margin-top: var(--nav-gap); }
+  body.spaces-page .spaces-brand, body.connections-page .connections-brand { margin: 0 0 var(--branding-gap); }
+  body.spaces-page .spaces-heading, body.connections-page .connections-heading { margin: 0 0 var(--content-gap); }
+  body.spaces-page .spaces-navigation, body.connections-page .connections-navigation { margin-top: var(--nav-gap); margin-bottom: 0; }
+  body.video-welcome-page .welcome-brand { top: 3.5%; height: 7.6%; }
+  body.video-welcome-page .welcome-title { top: 13%; }
+  /* Keep the video size and playback unchanged, reduce excessive title-to-video space. */
+  body.video-welcome-page .welcome-visual { top: 19.0%; }
+  body.video-welcome-page .welcome-tagline { top: 56.1%; }
+  body.video-welcome-page .welcome-button { top: 69%; }
+}
+@media (orientation: landscape) {
+  body.spaces-page .spaces-brand, body.connections-page .connections-brand { margin: 0 0 1.3vh; }
+  body.spaces-page .spaces-heading, body.connections-page .connections-heading { margin: 0 0 1.6vh; }
+  body.spaces-page .spaces-navigation, body.connections-page .connections-navigation { margin-top: 1.5vh; }
+}
+/* Native cross-document transitions progressively enhance same-origin HTTP navigation.
+   Identical background pixels dissolve in place; the shared logo is a named element. */
+@view-transition { navigation: auto; }
+.brand-logo { view-transition-name: kiosk-logo; }
+::view-transition-group(root), ::view-transition-group(kiosk-logo) {
+  animation-duration: 800ms;
+  animation-timing-function: ease-in-out;
+}
+::view-transition-old(root), ::view-transition-new(root) {
+  animation-duration: 800ms;
+  animation-timing-function: ease-in-out;
+}
+::view-transition-old(kiosk-logo), ::view-transition-new(kiosk-logo) {
+  animation-duration: 800ms;
+  animation-timing-function: ease-in-out;
+}
+/* Older TV browsers and file:// use a two-stage content dissolve, without hiding
+   branding, backgrounds or borders. A document load can still interrupt continuity. */
+html.kiosk-fade-out .main-content > :not(header),
+html.kiosk-fade-out .new-station-screen > :not(header),
+html.kiosk-fade-out .spaces-screen > :not(header),
+html.kiosk-fade-out .connections-screen > :not(header),
+html.kiosk-fade-out .welcome > :not(header) { animation: kiosk-out 400ms ease-in-out both; pointer-events: none; }
+html.kiosk-fade-in .main-content > :not(header),
+html.kiosk-fade-in .new-station-screen > :not(header),
+html.kiosk-fade-in .spaces-screen > :not(header),
+html.kiosk-fade-in .connections-screen > :not(header),
+html.kiosk-fade-in .welcome > :not(header) { animation: kiosk-in 400ms ease-in-out both; }
+@keyframes kiosk-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes kiosk-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  ::view-transition-group(root), ::view-transition-group(kiosk-logo),
+  ::view-transition-old(root), ::view-transition-new(root),
+  ::view-transition-old(kiosk-logo), ::view-transition-new(kiosk-logo) { animation-duration: .001ms !important; }
+  html.kiosk-fade-out .main-content > *, html.kiosk-fade-out main > *,
+  html.kiosk-fade-in .main-content > *, html.kiosk-fade-in main > * { animation: none !important; }
+}
+/* Keep the landscape gallery's branding grouped in its left column. */
+@media (orientation: landscape) {
+  body.new-station-page .new-station-screen { row-gap: clamp(8px, 1.85vh, 24px); }
+  body.new-station-page .new-station-heading { align-self: start; }
+  body.home-page .brand-header { margin-bottom: clamp(8px, 1.85vh, 24px); }
+}

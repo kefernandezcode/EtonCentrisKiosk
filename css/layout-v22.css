@@ -1,0 +1,16 @@
+/* v22: exact branding artwork, clean matched borders, and transparent enlarged plan. */
+:root { --left-border: min(9.1666667vw, 5.15625vh); --right-border: var(--left-border); }
+body.video-welcome-page .welcome-tagline img { display: block; width: 62%; height: auto; margin: 0 auto; object-fit: contain; }
+.connections-heading { width: 100%; }
+body.spaces-page .floorplan-panel { background: transparent; border: 0; border-radius: 0; box-shadow: none; max-width: 892px; }
+body.spaces-page .spaces-navigation { max-width: 892px; }
+body.spaces-page .floorplan-stage .editorial { top: auto; bottom: 0; }
+body.spaces-page .editorial-watermark { top: auto; bottom: 0; }
+@media (orientation: portrait) {
+  body.spaces-page { --spaces-gap: clamp(10px, 2.0833333vh, 40px); }
+  body.spaces-page .spaces-brand { margin: 0 0 var(--spaces-gap); }
+  body.spaces-page .spaces-heading { margin: 0 0 var(--spaces-gap); }
+  body.spaces-page .spaces-navigation { margin: var(--spaces-gap) 0 0; }
+  /* The map remains centered within the available space, while its panel has no visible fill. */
+  body.spaces-page .floorplan-panel { padding: 0 10px; }
+}

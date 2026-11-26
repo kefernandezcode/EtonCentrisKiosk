@@ -1,0 +1,48 @@
+/* Finishing pass: editorial captions, burgundy labels, centered navigation. */
+@font-face { font-family: 'Cormorant Garamond'; src: local('Cormorant Garamond Italic'), url('../assets/fonts/CormorantGaramond-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: local('Manrope Medium'), url('../assets/fonts/Manrope-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+:root {
+  --burgundy: #4B3035;
+  --button-text-shadow: 0 1px 2px rgba(75,48,53,.20);
+  --button-shadow: 0 5px 8px rgba(75,48,53,.19), 0 2px 3px rgba(75,48,53,.14);
+}
+body .outline-button, body .back-home, body .welcome-button, body .connection-card, body .dialog-close, body .gallery-tile {
+  color: var(--burgundy); font-family: var(--font-body); font-weight: 600;
+  text-transform: uppercase; text-align: center; letter-spacing: 2.4px;
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+body .outline-button, body .back-home, body .welcome-button {
+  position: relative; display: inline-flex; justify-content: center; align-items: center;
+  box-sizing: border-box; padding-inline: 2.15em; gap: 0; max-width: 100%;
+}
+body .outline-button { min-width: min(135px, 44%); min-height: 56px; padding-inline: 2em; }
+body .new-station-screen .back-home { min-width: min(330px, 90%); padding-inline: 2.6em; font-weight: 600; }
+body .button-label { display: block; text-align: center; }
+body .outline-button > [aria-hidden], body .back-home > svg, body .welcome-button > [aria-hidden] {
+  position: absolute; top: 50%; left: .7em; transform: translateY(-50%); width: 1.2em; height: auto; line-height: 1; text-align: center; }
+body .welcome-button > [aria-hidden] { left: auto; right: .7em; }
+body .outline-button:active, body .back-home:active, body .connection-card:active, body .dialog-close:active, body .gallery-tile:active {
+  transform: translateY(4px); box-shadow: 0 2px 4px rgba(75,48,53,.18); filter: brightness(.98);
+}
+body .connection-card .connection-name { font-weight: 600; text-align: center; }
+body .carousel-arrow { color: var(--burgundy); transition: transform .25s ease, box-shadow .25s ease; }
+body .welcome-button { overflow: hidden; animation: none; isolation: isolate; }
+body .welcome-button::after { content: ''; position: absolute; pointer-events: none; top: 0; bottom: 0; left: -45%; width: 35%; background: linear-gradient(90deg,transparent,rgba(255,255,255,.42),transparent); transform: skewX(-20deg); animation: welcome-sweep 4.5s ease-in-out infinite; }
+/* The light sweep repeats while idle so it is visible before tapping to navigate. */
+@keyframes welcome-sweep { 0%, 12% { left: -45%; } 32%, 100% { left: 135%; } }
+body .station-caption { display: flex; flex: 0 0 auto; flex-direction: column; align-items: center; justify-content: center; gap: clamp(3px,.45vh,9px); width: 100%; min-height: clamp(68px,8vh,150px); color: var(--burgundy); text-align: center; margin: 0; line-height: 1.15; letter-spacing: normal; }
+.caption-brand { font-family: var(--font-body); font-weight: 500; font-size: clamp(10px,1.15vh,21px); letter-spacing: .23em; }
+.caption-name { font-family: var(--font-heading); font-weight: 400; font-style: italic; font-size: clamp(19px,3.05vh,56px); line-height: 1.12; letter-spacing: -.02em; max-width: 100%; }
+.caption-divider { display: block; width: clamp(36px,6vh,110px); height: 1px; background: #C65A25; margin: .25vh auto 0; transform-origin: center; }
+.station-caption.is-revealing .caption-brand { animation: caption-rise 650ms cubic-bezier(.22,1,.36,1) 150ms both; }
+.station-caption.is-revealing .caption-name { animation: caption-focus 900ms cubic-bezier(.22,1,.36,1) 350ms both; }
+.station-caption.is-revealing .caption-divider { animation: caption-line 700ms ease-out 650ms both; }
+@keyframes caption-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes caption-focus { from { opacity: 0; filter: blur(5px); } to { opacity: 1; filter: blur(0); } }
+@keyframes caption-line { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
+@media (orientation: landscape) { body .new-station-screen .back-home { min-width: 0; width: 100%; font-size: clamp(11px,1.8vh,24px); padding-inline: 2.1em; } }
+@media (max-width: 340px) { body .outline-button { min-width: 0; padding-inline: 1.8em; } }
+@media (prefers-reduced-motion: reduce) {
+  body .welcome-button::after, .station-caption.is-revealing > * { animation: none !important; }
+  body .outline-button, body .back-home, body .welcome-button, body .connection-card, body .carousel-arrow { transition: none !important; }
+}
