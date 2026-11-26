@@ -13,18 +13,23 @@
     function fallback() { visual.classList.remove('video-playing'); }
     function playing() { visual.classList.add('video-playing'); }
     function startVideo() {
-      if (leaving) return;
+      if (leaving || document.hidden) return;
       video.muted = true;
       video.defaultMuted = true;
       var result;
       try { result = video.play(); } catch (e) { fallback(); return; }
-      if (result && typeof result.catch === 'function') result.catch(fallback);
+      if (result && typeof result.catch === 'function') result.catch(function () {
+        if (video.paused || video.error) fallback();
+      });
     }
     video.addEventListener('playing', playing);
     video.addEventListener('error', fallback);
     video.addEventListener('abort', fallback);
     video.addEventListener('emptied', fallback);
     window.addEventListener('pageshow', function () { leaving = false; startVideo(); });
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && video.paused) startVideo();
+    });
     startVideo();
   }
   document.body.addEventListener('click', begin);
