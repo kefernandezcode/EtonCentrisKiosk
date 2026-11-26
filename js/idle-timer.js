@@ -1,5 +1,5 @@
 (function () {
-  var IDLE_TIMEOUT = 2 * 60 * 1000;
+  var IDLE_TIMEOUT = 1 * 60 * 1000;
   var timer, lastActivity;
   function check() {
     var remaining = IDLE_TIMEOUT - (Date.now() - lastActivity);
