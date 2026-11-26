@@ -1,0 +1,50 @@
+
+name: Deploy Kiosk to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository with LFS
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Download LFS files
+        run: git lfs pull
+
+      - name: Verify screensaver video
+        run: |
+          ls -lh assets/videos/screensaver.mp4
+          test "$(stat -c%s assets/videos/screensaver.mp4)" -gt 1024
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
